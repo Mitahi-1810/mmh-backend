@@ -1,0 +1,35 @@
+services:
+  - type: web
+    name: mmh-backend
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0
+      - key: FRONTEND_URL
+        fromGroup: mmh-secrets
+      - key: SUPABASE_URL
+        fromGroup: mmh-secrets
+      - key: SUPABASE_SERVICE_KEY
+        fromGroup: mmh-secrets
+      - key: SUPABASE_JWT_SECRET
+        fromGroup: mmh-secrets
+      - key: GEMINI_API_KEY
+        fromGroup: mmh-secrets
+      - key: GROQ_API_KEY
+        fromGroup: mmh-secrets
+      - key: VAPID_PUBLIC_KEY
+        fromGroup: mmh-secrets
+      - key: VAPID_PRIVATE_KEY
+        fromGroup: mmh-secrets
+      - key: VAPID_CLAIMS_EMAIL
+        value: admin@mmh.io
+      - key: WHATSAPP_ENABLED
+        value: "true"
+      - key: WHATSAPP_PROVIDER
+        value: callmebot
+      - key: CALLMEBOT_API_KEY
+        fromGroup: mmh-secrets
+      - key: TZ_OFFSET_HOURS
+        value: "6"

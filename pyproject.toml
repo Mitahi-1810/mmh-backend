@@ -1,0 +1,42 @@
+[project]
+name = "sanjibani-backend"
+version = "0.1.0"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi>=0.115.0",
+    "uvicorn[standard]>=0.30.0",
+    "python-dotenv>=1.0.0",
+    "pydantic-settings>=2.3.0",
+    "supabase>=2.5.0",
+    "groq>=0.9.0",
+    "google-generativeai>=0.7.0",
+    "pgvector>=0.3.0",
+    "psycopg2-binary>=2.9.0",
+    "python-jose[cryptography]>=3.3.0",
+    "python-multipart>=0.0.9",
+    "httpx>=0.27.0",
+    "apscheduler>=3.10.0",
+    "rapidfuzz>=3.9.0",
+    "playwright>=1.44.0",
+    "beautifulsoup4>=4.12.0",
+    "lxml>=5.2.0",
+    # ── Medicine-aware OCR (TrOCR pipeline) ──────────────────────────────────
+    # torch: CPU build is fine for inference. For GPU server, install separately:
+    #   pip install torch --index-url https://download.pytorch.org/whl/cu121
+    "torch>=2.2.0",
+    "transformers>=4.40.0",
+    "pillow>=10.0.0",
+    "opencv-python-headless>=4.9.0",
+    "numpy>=1.26.0",
+    "scipy>=1.12.0",        # deskew / signal processing
+    "sentencepiece>=0.2.0", # TrOCR tokenizer dependency
+    # ── Push notifications ────────────────────────────────────────────────────
+    "pywebpush>=2.0.0",     # VAPID-signed Web Push (RFC 8291)
+    "cryptography>=42.0.0", # pywebpush dependency
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0.0", "pytest-asyncio>=0.23.0", "ruff>=0.4.0"]
+
+[tool.ruff]
+line-length = 100
