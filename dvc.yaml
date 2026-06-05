@@ -1,0 +1,35 @@
+stages:
+  prepare:
+    cmd: python src/prepare_data.py data/raw/medicines_v2.csv data/processed/medicines_clean.csv
+    deps:
+      - src/prepare_data.py
+      - data/raw/medicines_v2.csv
+    params:
+      - prepare
+    outs:
+      - data/processed/medicines_clean.csv
+
+  analyze:
+    cmd: python src/analyze.py data/processed/medicines_clean.csv data/processed/stats.json metrics/data_metrics.json
+    deps:
+      - src/analyze.py
+      - data/processed/medicines_clean.csv
+    params:
+      - analyze
+    outs:
+      - data/processed/stats.json
+    metrics:
+      - metrics/data_metrics.json:
+          cache: false
+
+  evaluate_ocr:
+    cmd: python src/evaluate_ocr.py data/processed/medicines_clean.csv data/eval_results.json metrics/ocr_metrics.json
+    deps:
+      - src/evaluate_ocr.py
+      - data/processed/medicines_clean.csv
+      - data/eval_results.json
+    params:
+      - ocr
+    metrics:
+      - metrics/ocr_metrics.json:
+          cache: false

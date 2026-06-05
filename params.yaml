@@ -1,0 +1,13 @@
+prepare:
+  min_price: 0.5           # drop rows with unit_price below this (৳)
+  dedup_strategy: keep_first  # keep_first | keep_cheapest
+
+analyze:
+  top_n_companies: 20      # how many companies to show in top-N table
+  top_n_generics: 10       # top N generics by brand count
+
+ocr:
+  fuzzy_threshold: 85      # WRatio cutoff for fuzzy brand match (0-100)
+  confidence_threshold: 0.60
+  n_eval_images: 200
+  model: gemini-2.5-flash

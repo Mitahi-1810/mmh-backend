@@ -1,0 +1,5 @@
+outs:
+- md5: 424e88839ae89cf608d98d92607b1b95
+  size: 70477908
+  hash: md5
+  path: medicines_v2.csv
