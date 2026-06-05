@@ -1,0 +1,9 @@
+{
+  "total_medicines": 24795,
+  "unique_companies": 216,
+  "unique_generics": 1787,
+  "dosage_forms": 126,
+  "avg_unit_price_bdt": 28.53,
+  "min_unit_price_bdt": 0.5,
+  "max_unit_price_bdt": 952.0
+}

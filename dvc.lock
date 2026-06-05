@@ -1,0 +1,78 @@
+schema: '2.0'
+stages:
+  prepare:
+    cmd: python3 src/prepare_data.py data/raw/medicines_v2.csv 
+      data/processed/medicines_clean.csv
+    deps:
+    - path: data/raw/medicines_v2.csv
+      hash: md5
+      md5: fa552978b5b4d1be626b1376c9901fda
+      size: 145525211
+    - path: src/prepare_data.py
+      hash: md5
+      md5: 83abe9d6625d0d1f7d4fc4fc187e6232
+      size: 3157
+    params:
+      params.yaml:
+        prepare:
+          min_price: 0.5
+          dedup_strategy: keep_first
+    outs:
+    - path: data/processed/medicines_clean.csv
+      hash: md5
+      md5: a1ad83271d908e8c6ed4c50ae8d20469
+      size: 141212107
+  analyze:
+    cmd: python3 src/analyze.py data/processed/medicines_clean.csv 
+      data/processed/stats.json metrics/data_metrics.json
+    deps:
+    - path: data/processed/medicines_clean.csv
+      hash: md5
+      md5: a1ad83271d908e8c6ed4c50ae8d20469
+      size: 141212107
+    - path: src/analyze.py
+      hash: md5
+      md5: a478de87d5d9ff9c7276baf246441654
+      size: 3727
+    params:
+      params.yaml:
+        analyze:
+          top_n_companies: 20
+          top_n_generics: 10
+    outs:
+    - path: data/processed/stats.json
+      hash: md5
+      md5: 1997531e2c478a9ee347b320faad3a0b
+      size: 3574
+    - path: metrics/data_metrics.json
+      hash: md5
+      md5: fb7b17b07ff455b4e75fa6184bb40466
+      size: 198
+  evaluate_ocr:
+    cmd: python3 src/evaluate_ocr.py data/processed/medicines_clean.csv 
+      data/eval_results.json metrics/ocr_metrics.json
+    deps:
+    - path: data/eval_results.json
+      hash: md5
+      md5: c0032578997398ab2f81eb2778ca8458
+      size: 58474
+    - path: data/processed/medicines_clean.csv
+      hash: md5
+      md5: a1ad83271d908e8c6ed4c50ae8d20469
+      size: 141212107
+    - path: src/evaluate_ocr.py
+      hash: md5
+      md5: 14b6b81ec7405bcf9a3630a3d5edaf9b
+      size: 7362
+    params:
+      params.yaml:
+        ocr:
+          fuzzy_threshold: 85
+          confidence_threshold: 0.6
+          n_eval_images: 200
+          model: gemini-2.5-flash
+    outs:
+    - path: metrics/ocr_metrics.json
+      hash: md5
+      md5: 4ce0a536bfc3ecb697c2eb3967be8009
+      size: 998

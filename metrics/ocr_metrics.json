@@ -1,0 +1,53 @@
+{
+  "n_images_evaluated": 100,
+  "corpus_size": 16220,
+  "vocab_coverage_pct": 100.0,
+  "best_exact_match_pct": 68.0,
+  "best_fuzzy_match_pct": 89.0,
+  "best_cer": 0.1356,
+  "layers": {
+    "L0": {
+      "exact_match_pct": 49.0,
+      "fuzzy_match_pct": 77.0,
+      "cer": 0.2023
+    },
+    "L1": {
+      "exact_match_pct": 66.0,
+      "fuzzy_match_pct": 80.0,
+      "cer": null
+    },
+    "L2": {
+      "exact_match_pct": 58.0,
+      "fuzzy_match_pct": 86.0,
+      "cer": 0.1527
+    },
+    "L3": {
+      "exact_match_pct": 68.0,
+      "fuzzy_match_pct": 89.0,
+      "cer": 0.1356
+    }
+  },
+  "by_difficulty": {
+    "clean": {
+      "n": 30,
+      "best_exact_pct": 80.0
+    },
+    "mild": {
+      "n": 23,
+      "best_exact_pct": 78.3
+    },
+    "moderate": {
+      "n": 17,
+      "best_exact_pct": 76.5
+    },
+    "hard": {
+      "n": 30,
+      "best_exact_pct": 53.3
+    }
+  },
+  "params_used": {
+    "fuzzy_threshold": 85,
+    "confidence_threshold": 0.6,
+    "model": "gemini-2.5-flash"
+  }
+}
